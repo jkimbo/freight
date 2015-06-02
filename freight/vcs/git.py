@@ -66,5 +66,9 @@ class GitVcs(Vcs):
         self.run(['reset', '--hard', ref], workspace=new_workspace)
 
     def describe(self, ref):
-        return self.run(['describe', '--always', '--abbrev=0', ref],
+        return self.run(['describe', '--all', '--always', '--abbrev=0', ref],
+                        capture=True)
+
+    def get_sha(self, ref):
+        return self.run(['show-ref', '--hash=0', ref],
                         capture=True)
