@@ -1,4 +1,4 @@
-from __future__ import absolute_import, unicode_literals
+from __future__ import absolute_import
 
 import json
 import mock
@@ -42,7 +42,8 @@ class AppUpdateTest(AppDetailsBase):
         app = App.query.get(self.app.id)
         assert app.name == 'foobar'
         assert app.provider == 'shell'
-        assert app.provider_config == {'command': '/usr/bin/true', 'timeout': 50}
+        assert app.provider_config['command'] == '/usr/bin/true'
+        assert app.provider_config['timeout'] == 50
         assert app.notifiers == [
             {'type': 'slack', 'config': {'webhook_url': 'https://example.com'}},
         ]
