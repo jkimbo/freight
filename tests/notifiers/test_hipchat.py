@@ -56,3 +56,20 @@ class HipChatNotifierTest(HipChatNotifierBase):
         # TODO(dcramer): we probably shouldnt hardcode this, but it'll do for now
         assert payload
         assert payload['color'] == 'yellow'
+
+    @responses.activate
+    def test_notify_option(self):
+        responses.add(responses.POST, 'http://example.com/')
+
+        config = {'webhook_url': 'http://example.com/', 'notify': 'true'}
+
+        self.notifier.send(self.task, config, NotifierEvent.TASK_FINISHED)
+
+        call = responses.calls[0]
+        assert len(responses.calls) == 1
+        assert call.request.url == 'http://example.com/'
+        body = call.request.body
+        payload = json.loads(body)
+        # TODO(dcramer): we probably shouldnt hardcode this, but it'll do for now
+        assert payload
+        assert payload['notify'] == 'true'
