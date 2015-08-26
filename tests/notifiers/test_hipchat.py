@@ -36,7 +36,6 @@ class HipChatNotifierTest(HipChatNotifierBase):
         assert call.request.url == 'http://example.com/'
         body = call.request.body
         payload = json.loads(body)
-        # TODO(dcramer): we probably shouldnt hardcode this, but it'll do for now
         assert payload
         assert payload['color'] == 'green'
 
@@ -53,7 +52,6 @@ class HipChatNotifierTest(HipChatNotifierBase):
         assert call.request.url == 'http://example.com/'
         body = call.request.body
         payload = json.loads(body)
-        # TODO(dcramer): we probably shouldnt hardcode this, but it'll do for now
         assert payload
         assert payload['color'] == 'yellow'
 
@@ -70,6 +68,5 @@ class HipChatNotifierTest(HipChatNotifierBase):
         assert call.request.url == 'http://example.com/'
         body = call.request.body
         payload = json.loads(body)
-        # TODO(dcramer): we probably shouldnt hardcode this, but it'll do for now
         assert payload
         assert payload['notify'] == 'true'
