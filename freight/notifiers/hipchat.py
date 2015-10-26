@@ -24,7 +24,6 @@ class HipChatNotifier(Notifier):
         params = {
             'number': task.number,
             'app_name': app.name,
-            'task_name': task.name,
             'env': task.environment,
             'ref': task.ref,
             'sha': task.sha[:7] if task.sha else task.ref,
